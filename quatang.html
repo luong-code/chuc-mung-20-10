@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quà Tặng Đặc Biệt 20/10</title>
+    <style>
+        /* CSS CHÍNH: NỀN HỒNG ĐẬM & LAYOUT */
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background-color: #330033; /* Nền hồng đậm */
+            color: #ffc0cb; /* Màu chữ hồng nhạt */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* KHUNG CHỨA HIỆU ỨNG HOA ANH ĐÀO */
+        .sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Cho phép tương tác với nội dung bên dưới */
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        /* Cánh hoa (Petal) */
+        .petal {
+            position: absolute; /* Quan trọng cho hiệu ứng rơi */
+            opacity: 0.8;
+            filter: drop-shadow(0 0 3px rgba(255, 192, 203, 0.5));
+        }
+
+        /* HIỆU ỨNG RƠI CỦA CÁNH HOA */
+        @keyframes fall {
+            0% {
+                transform: translate3d(0, 0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate3d(200px, 100vh, 0) rotate(720deg); /* Rơi và xoay nhẹ */
+                opacity: 0;
+            }
+        }
+
+        /* NỘI DUNG CHÍNH (CHỮ) */
+        .content {
+            z-index: 20;
+            position: relative;
+            animation: fadeIn 2s ease-out forwards;
+            padding: 20px;
+        }
+        .content h1, .content p {
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(255, 100, 150, 0.8);
+            letter-spacing: 1px;
+        }
+        .content h1 {
+            font-size: 3em;
+            color: #ff3366; /* Hồng rực cho dòng chính */
+        }
+        .content p {
+            font-size: 1.5em;
+        }
+        
+        /* Chữ quà tặng (có thể chỉnh sửa theo nội dung quà tặng) */
+        .gift-message {
+            margin-top: 30px;
+            font-size: 2em;
+            color: #ffff00; /* Màu vàng nổi bật */
+            text-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
+            animation: bounce 1s infinite alternate; /* Hiệu ứng nhấp nháy/nhảy nhẹ */
+        }
+
+        /* HIỆU ỨNG XUẤT HIỆN MỜ DẦN */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Hiệu ứng nhấp nháy cho chữ quà tặng */
+        @keyframes bounce {
+            from { transform: translateY(0); text-shadow: 0 0 10px rgba(255, 255, 0, 0.8); }
+            to { transform: translateY(-5px); text-shadow: 0 0 20px rgba(255, 255, 0, 1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sakura-container"></div>
+
+    <div class="content">
+        <h1>💐 CHÚC MỪNG 20/10 💐</h1>
+        <p>luongho CHÚC CÁC BẠN NỮ XINH ĐẸP NHÉEEEE</p>
+        <p>tặng hộp milo với cục kẹo online nè hjhj </p>
+        
+        <div class="gift-message">
+            ăn tạm đi nè 🥛🍫, 🍭 🎁
+        </div>
+    </div>
+
+    <script>
+        // --- Tạo hiệu ứng Hoa Anh Đào Rơi ---
+        const sakuraContainer = document.querySelector('.sakura-container');
+        const numberOfPetals = 80; 
+
+        for (let i = 0; i < numberOfPetals; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            // Random màu hồng hoặc trắng
+            const isWhite = Math.random() > 0.5;
+            const color = isWhite ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 192, 203, 0.9)';
+            
+            petal.style.cssText = `
+                width: ${10 + Math.random() * 10}px; 
+                height: ${10 + Math.random() * 10}px;
+                background-color: ${color}; 
+                border-radius: 50%;
+                box-shadow: 0 0 5px ${isWhite ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 192, 203, 0.5)'};
+                left: ${Math.random() * 100}vw;
+                animation: fall ${5 + Math.random() * 7}s linear infinite; 
+                animation-delay: -${Math.random() * 12}s; 
+            `;
+            
+            sakuraContainer.appendChild(petal);
+        }
+    </script>
+
+</body>
+</html>

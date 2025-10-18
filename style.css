@@ -1,0 +1,113 @@
+/* Thiết lập chung cho body */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    background-color: #121212; /* Nền tối */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    position: relative;
+}
+
+/* -------------------- Hiệu ứng Hoa Anh Đào Rơi -------------------- */
+.sakura-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    z-index: 1;
+}
+
+/* Animation cho cánh hoa rơi */
+@keyframes fall {
+    0% {
+        opacity: 0;
+        transform: translateY(-10vh) rotateZ(0deg) translateX(0);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+        transform: translateY(100vh) rotateZ(360deg) translateX(50px); 
+    }
+}
+
+/* -------------------- Hộp Chúc Mừng -------------------- */
+.greeting-box {
+    text-align: center;
+    z-index: 10; 
+    padding: 30px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 30px rgba(255, 192, 203, 0.3);
+}
+
+/* -------------------- Dòng chữ di chuyển linh hoạt -------------------- */
+.moving-text {
+    font-size: clamp(1.5rem, 5vw, 3rem); 
+    color: #FFC0CB; /* Màu hồng dễ thương */
+    text-shadow: 0 0 10px #FF69B4, 0 0 20px #FF69B4;
+    padding: 10px 0;
+    animation: bounceText 4s infinite ease-in-out; 
+    will-change: transform; 
+}
+
+/* Keyframes cho dòng chữ di chuyển mượt mà */
+@keyframes bounceText {
+    0%, 100% {
+        transform: translateY(0) scale(1) rotateZ(0deg);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.05) rotateZ(-1deg); 
+    }
+}
+
+/* -------------------- Phần Bó Hoa và Nút -------------------- */
+.flower-section {
+    margin-top: 20px;
+}
+
+.flower-icon {
+    font-size: 5rem;
+    margin: 10px 0;
+    animation: pulse 1.5s infinite ease-in-out; 
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+#nextPageBtn {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #121212;
+    background-color: #FFC0CB;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0 5px 15px rgba(255, 192, 203, 0.5);
+}
+
+#nextPageBtn:hover {
+    background-color: #FF69B4;
+    color: #fff;
+}
+
+#nextPageBtn:active {
+    transform: scale(0.98);
+}
